@@ -81,9 +81,9 @@ These queries would output two columns as follows:
 
 # To Do
 
-Add unsupported calendars.
-
-* https://github.com/fitnr/convertdate
+* Add unsupported calendars.
+	* https://github.com/fitnr/convertdate
+* Convenience Function (as described here) is not implemented yet
 
 # Feedback
 
