@@ -1,14 +1,14 @@
 -------------------------------------------------------------------------------
--- Obtain Indian Civil Date from Calendar Array
+-- Calculate day of week from Julian day
 -------------------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION calendars.hindu_from_gregorian(
-	p_date DATE
+CREATE OR REPLACE FUNCTION astronomia.julian_weekday(
+	p_jd NUMERIC
 )
 RETURNS NUMERIC
 AS $$
 
 BEGIN
-	RETURN calendars.hindu_from_jd(astronomia.gregorian_to_jd(p_date::TIMESTAMP));
+	RETURN TRUNC(p_jd + 0.5) % 7;
 END;
 
 $$ LANGUAGE plpgsql;

@@ -2,13 +2,11 @@
 -- moon phase - first or last corrections
 --
 -- param - p_moonphase (moonphase type)
--- param - p_t (?)
 -- Returns - NUMERIC correction for JDE
 -------------------------------------------------------------------------------
 --
 CREATE OR REPLACE FUNCTION astronomia.moonphase_flc(
-	p_moonphase astronomia.moonphase,
-	p_t NUMERIC
+	p_moonphase astronomia.moonphase
 )
 RETURNS NUMERIC
 AS $$
@@ -46,7 +44,6 @@ DECLARE
 		0.00002 * SIN(M_ - M + 2 * F) +
 		-0.00002 * SIN(3 * M_ + M)
 	);
-
 
 BEGIN
 	RETURN t_flc;

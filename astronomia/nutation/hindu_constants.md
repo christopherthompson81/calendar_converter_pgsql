@@ -1,12 +1,3 @@
-INSERT INTO calendars.constants(calendar_type, identifier, shorthand, description, constant_value)
-VALUES (
-	'chinese',
-	'chinese_calendar_epoch_year',
-	'epoch_y',
-	'Start of Chinese Calendar in 2636 BCE by Chalmers',
-	-2636
-);
-
 # 0 = Sunday
 WEEKDAYS = (
 	"Ravivāra",
