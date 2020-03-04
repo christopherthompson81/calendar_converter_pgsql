@@ -1,0 +1,73 @@
+The data appears to have been sourced from VSOP87B
+
+Possibly a good idea to just import directly from the source material
+
+-------------------------------------------------------------------------------
+
+deltat
+	historic
+		table
+			NUMERIC
+			...
+		first NUMERIC
+		last NUMERIC
+	data
+		table
+			NUMERIC
+			...
+		first NUMERIC
+		firstYM
+			NUMERIC
+			...
+		last NUMERIC
+		lastYM
+			NUMERIC
+			...
+	prediction
+		table
+			NUMERIC
+			...
+		first NUMERIC
+		last NUMERIC
+
+
+DROP TABLE IF EXISTS deltat CASCADE;
+CREATE TABLE deltat_data (
+	deltat_data_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	table_name TEXT,
+	subtable_name TEXT,
+	value NUMERIC[]
+);
+
+-------------------------------------------------------------------------------
+
+earth
+	L
+		[0 - 5]
+			NUMERIC[3]
+			...
+	B
+		[0 - 5]
+			NUMERIC[3]
+			...
+	R
+		[0 - 5]
+			NUMERIC[3]
+			...
+
+TABLE planet_data
+
+DROP TABLE IF EXISTS planet_data CASCADE;
+CREATE TABLE planet_data (
+	planet_data_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	planet_name TEXT,
+	param1 TEXT,
+	param1_id INTEGER,
+	sequence INTEGER,
+	data NUMERIC[3]
+);
+
+
+Other planets match schema
+
+-------------------------------------------------------------------------------

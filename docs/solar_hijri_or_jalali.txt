@@ -1,0 +1,28 @@
+https://en.wikipedia.org/wiki/Solar_Hijri_calendar
+
+Solar Hijri calendar
+
+(Iranian / Persian / Jalali calendar)
+
+It begins on the March equinox (Nowruz) as determined by astronomical calculation for the Iran Standard Time meridian (52.5°E, UTC+03:30) and has years of 365 or 366 days.
+
+Tehran has coordinates of: 35.6892° N, 51.3890° E
+
+
+Spellings / Alternative Names
+ * Jalaali (Shamsi, Persian) 
+
+
+ -- Jalali Month Constants
+	FARVARDIN INTEGER := 1;
+	ORDIBEHESHT INTEGER := 2;
+	KHORDAD INTEGER := 3;
+	TIR INTEGER := 4;
+	MORDAD INTEGER := 5;
+	SHAHRIVAR INTEGER := 6;
+	MEHR INTEGER := 7;
+	ABAN INTEGER := 8;
+	AZAR INTEGER := 9;
+	DEY INTEGER := 10;
+	BAHMAN INTEGER := 11;
+	ESFAND INTEGER := 12;
