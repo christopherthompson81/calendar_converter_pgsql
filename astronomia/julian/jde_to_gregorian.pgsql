@@ -5,7 +5,7 @@
 -- This is important as it relates to VSOP87 data and computational convention.
 --
 -- PARAM - NUMERIC JDE
--- RETURNS - DATE Gregorian date (proleptic agnostic) without timezone
+-- RETURNS - TIMESTAMP Gregorian date (proleptic agnostic) without timezone
 -------------------------------------------------------------------------------
 --
 CREATE OR REPLACE FUNCTION astronomia.jde_to_gregorian(
