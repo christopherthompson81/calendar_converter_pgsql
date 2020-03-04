@@ -99,9 +99,11 @@ I openly solicit pull requests and issues as feedback to make this package bette
 	* [date-holidays-parser](https://github.com/commenthol/date-holidays-parser)
 * Chinese Date Support:
 	* [date-chinese](https://github.com/commenthol/date-chinese)
+* Hebrew Date Support:
+	* [convertdate](https://pypi.org/project/convertdate/)
 * Hindu Date Support:
 	* [convertdate](https://pypi.org/project/convertdate/)
 * Hijri Date Support
 	* [hijri-converter](https://github.com/dralshehri/hijri-converter)
 * Jalali Date Support
-	* [khayyam](https://github.com/pylover/khayyam/tree/master/khayyam)
+	* [khayyam](https://github.com/pylover/khayyam/)
