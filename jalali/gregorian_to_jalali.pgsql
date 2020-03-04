@@ -29,15 +29,15 @@ DECLARE
 BEGIN
 	t_offset := (t_jd::NUMERIC + 0.5) - 2121445.5;
 
-	t_cycle := t_offset / 1029983;
+	t_cycle := FLOOR(t_offset / 1029983);
 	t_remaining := t_offset % 1029983;
 
 	IF t_remaining = 1029982 THEN
 		t_year_cycle = 2820;
 	ELSE
-		t_a1 := t_remaining / 366;
+		t_a1 := FLOOR(t_remaining / 366);
 		t_a2 := t_remaining % 366;
-		t_year_cycle := ((2134*t_a1 + 2816*t_a2 + 2815) / 1028522)::INTEGER + t_a1 + 1;
+		t_year_cycle := FLOOR((2134*t_a1 + 2816*t_a2 + 2815) / 1028522) + t_a1 + 1;
 	END IF;
 
 	t_year := t_year_cycle + 2820*t_cycle + 474;

@@ -88,3 +88,20 @@ These queries would output two columns as follows:
 # Feedback
 
 I openly solicit pull requests and issues as feedback to make this package better.
+
+# Ported From Credits / Attributions
+
+* Astronomia: 
+	* [Astronomia](https://github.com/commenthol/astronomia)
+	* [Meeus](https://github.com/soniakeys/meeus)
+	* [Astronomica Algorithms - Jean Meeus](https://www.amazon.ca/Astronomical-Algorithms-Jean-Meeus/dp/0943396611)
+* Parsing Calendar Strings
+	* [date-holidays-parser](https://github.com/commenthol/date-holidays-parser)
+* Chinese Date Support:
+	* [date-chinese](https://github.com/commenthol/date-chinese)
+* Hindu Date Support:
+	* [convertdate](https://pypi.org/project/convertdate/)
+* Hijri Date Support
+	* [hijri-converter](https://github.com/dralshehri/hijri-converter)
+* Jalali Date Support
+	* [khayyam](https://github.com/pylover/khayyam/tree/master/khayyam)
