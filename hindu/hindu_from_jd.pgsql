@@ -20,7 +20,7 @@ DECLARE
 	-- Is this a leap year?
 	t_leap BOOLEAN := astronomia.leap_year_gregorian(t_calendar[1]);
 	-- JD at start of Gregorian year
-	t_calendar0 NUMERIC[] = astronomia.calendar_to_jd(ARRAY[t_calendar[1], 1, 1, 0, 0, 0, 0]::NUMERIC[]);
+	t_calendar0 NUMERIC[] := astronomia.calendar_to_jd(ARRAY[t_calendar[1], 1, 1, 0, 0, 0, 0]::NUMERIC[]);
 	-- Day number (0 based) in Gregorian year
 	t_year_day NUMERIC := t_jd - t_calendar0;
 	-- Days in Caitra this year
@@ -28,13 +28,13 @@ DECLARE
 	-- Month Day (tentative)
 	t_month_day INTEGER := t_year_day - t_caitra;
 	-- Tentative year in Saka era
-	t_year = t_calendar[1] - SAKA_EPOCH;
+	t_year INTEGER := t_calendar[1] - SAKA_EPOCH;
 	t_month INTEGER;
 	t_day NUMERIC;
 	t_date_parts calendars.date_parts%rowtype;
 
 BEGIN
-	IF t_year_day < SAKA_DAY_DELTA:
+	IF t_year_day < SAKA_DAY_DELTA THEN
 		-- Day is at the end of the preceding Saka year
 		t_year := t_year - 1;
 		t_year_day := t_year_day + t_caitra + (31 * 5) + (30 * 3) + 10 + SAKA_DAY_DELTA;
@@ -52,7 +52,7 @@ BEGIN
 			t_month := TRUNC(t_month_day / 30) + 7;
 			t_day := (t_month_day % 30) + 1;
 		END IF;
-	END IF:
+	END IF;
 	t_date_parts.year_value := t_year;
 	t_date_parts.month_value := t_month;
 	t_date_parts.day_value := t_day::INTEGER;

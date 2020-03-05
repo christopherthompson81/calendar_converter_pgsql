@@ -10,7 +10,7 @@ RETURNS INTEGER AS $$
 DECLARE
 	last_year INTEGER := calendars.hebrew_delay_new_year1(p_year - 1);
 	present_year INTEGER := calendars.hebrew_delay_new_year1(p_year);
-	next_year INTEGER := calendars.hebrew_delay_new_year1(p_year + 1)
+	next_year INTEGER := calendars.hebrew_delay_new_year1(p_year + 1);
 
 BEGIN
 	IF next_year - present_year = 356 THEN

@@ -235,6 +235,15 @@ def add_chinese_calendar():
 	print('Loading Chinese Date Functions')
 	db.apply_sql_folder_to_db('chinese')
 
+# Extends the calendars database with Hebrew date functions
+def add_hebrew_calendar():
+	"""Extends the calendars database with Hebrew date functions"""
+	db = PqDbController()
+	db.connect_db()
+	print('Adding Hebrew date types and functions')
+	# Load Functions
+	print('Loading Hebrew Date Functions')
+	db.apply_sql_folder_to_db('hebrew')
 
 # Extends the calendars database with Hijri date functions
 def add_hijri_calendar():
@@ -246,6 +255,15 @@ def add_hijri_calendar():
 	print('Loading Hijri Date Functions')
 	db.apply_sql_folder_to_db('hijri')
 
+# Extends the calendars database with Hindu date functions
+def add_hindu_calendar():
+	"""Extends the calendars database with Hindu date functions"""
+	db = PqDbController()
+	db.connect_db()
+	print('Adding Hindu date types and functions')
+	# Load Functions
+	print('Loading Hindu Date Functions')
+	db.apply_sql_folder_to_db('hindu')
 
 # Extends the calendars database with Jalali date functions
 def add_jalali_calendar():
@@ -267,5 +285,7 @@ def add_jalali_calendar():
 build_astronomia_db()
 build_calendars_db()
 add_chinese_calendar()
+add_hebrew_calendar()
 add_hijri_calendar()
+add_hindu_calendar()
 add_jalali_calendar()

@@ -20,8 +20,8 @@ DECLARE
 
 BEGIN
 	IF DATE_PART('year', t_date) != gregorian_year THEN
-		t_jd NUMERIC := calendars.hebrew_to_jd(gregorian_year + HEBREW_YEAR_OFFSET + 1, hebrew_month, hebrew_day);
-		t_date DATE := astronomia.jd_to_gregorian(t_jd)::DATE;
+		t_jd := calendars.hebrew_to_jd(gregorian_year + HEBREW_YEAR_OFFSET + 1, hebrew_month, hebrew_day);
+		t_date := astronomia.jd_to_gregorian(t_jd)::DATE;
 	END IF;
 	IF DATE_PART('year', t_date) != gregorian_year THEN
 		RAISE EXCEPTION 'Could not determine Hebrew date from gregorian year: %', gregorian_year;
