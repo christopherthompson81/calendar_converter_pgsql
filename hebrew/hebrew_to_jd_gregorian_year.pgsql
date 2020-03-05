@@ -1,18 +1,32 @@
-def to_jd_gregorianyear(gregorianyear, hebrew_month, hebrew_day):
-	# gregorian year is either 3760 or 3761 years less than hebrew year
-	# we'll first try 3760 if conversion to gregorian isn't the same
-	# year that was passed to this method, then it must be 3761.
+-------------------------------------------------------------------------------
+-- Get a Gregorian date using a Gregorian year, a Hebrew month and a Hebrew day
+--
+-- gregorian year is either 3760 or 3761 years less than hebrew year
+-- we'll first try 3760 if conversion to gregorian isn't the same
+-- year that was passed to this method, then it must be 3761.
+-------------------------------------------------------------------------------
+--
+CREATE OR REPLACE FUNCTION calendars.hebrew_to_possible_gregorian(
+	gregorian_year INTEGER,
+	hebrew_month INTEGER,
+	hebrew_day INTEGER
+)
+RETURNS DATE AS $$
 
-	for y in (gregorianyear + HEBREW_YEAR_OFFSET, gregorianyear + HEBREW_YEAR_OFFSET + 1):
-		jd = to_jd(y, hebrew_month, hebrew_day)
-		gd = gregorian.from_jd(jd)
-		if gd[0] == gregorianyear:
-			break
-		else:
-			gd = None
+DECLARE
+	HEBREW_YEAR_OFFSET INTEGER := 3760;
+	t_jd NUMERIC := calendars.hebrew_to_jd(gregorian_year + HEBREW_YEAR_OFFSET, hebrew_month, hebrew_day);
+	t_date DATE := astronomia.jd_to_gregorian(t_jd)::DATE;
 
-	if not gd:  # should never occur, but just incase...
-		raise ValueError("Could not determine gregorian year")
+BEGIN
+	IF DATE_PART('year', t_date) != gregorian_year THEN
+		t_jd NUMERIC := calendars.hebrew_to_jd(gregorian_year + HEBREW_YEAR_OFFSET + 1, hebrew_month, hebrew_day);
+		t_date DATE := astronomia.jd_to_gregorian(t_jd)::DATE;
+	END IF;
+	IF DATE_PART('year', t_date) != gregorian_year THEN
+		RAISE EXCEPTION 'Could not determine Hebrew date from gregorian year: %', gregorian_year;
+	END IF;
+	RETURN t_date;
+END;
 
-	# tuple: (y, m, d)
-	return (gd[0], gd[1], gd[2])
+$$ LANGUAGE plpgsql STRICT IMMUTABLE;

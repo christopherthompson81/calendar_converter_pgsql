@@ -1,15 +1,41 @@
-def to_jd(year, month, day):
-	months = year_months(year)
-	jd = EPOCH + delay_1(year) + delay_2(year) + day + 1
+-------------------------------------------------------------------------------
+-- Get a Julian day count from a Hebrew date
+-------------------------------------------------------------------------------
+--
+CREATE OR REPLACE FUNCTION calendars.hebrew_to_jd(
+	p_hebrew calendars.date_parts
+)
+RETURNS NUMERIC AS $$
 
-	if month < 7:
-		for mon in range(7, months + 1):
-			jd += month_days(year, mon)
+DECLARE
+	-- Constants
+	EPOCH NUMERIC := 347995.5;
+	-- Vars
+	t_months INTEGER := calendars.hebrew_year_months(p_hebrew.year_value);
+	t_jd NUMERIC := (
+		EPOCH +
+		calendars.hebrew_delay_new_year1(p_hebrew.year_value) +
+		calendars.hebrew_delay_new_year2(p_hebrew.year_value) +
+		p_hebrew.day_value +
+		1
+	);
+	t_month INTEGER;
 
-		for mon in range(1, month):
-			jd += month_days(year, mon)
-	else:
-		for mon in range(7, month):
-			jd += month_days(year, mon)
+BEGIN
+	IF p_hebrew.month_value < 7 THEN
+		FOR t_month IN 7..(t_months + 1) LOOP
+			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
+		END LOOP;
+		FOR t_month IN 1..p_hebrew.month_value LOOP
+			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
+		END LOOP;
+	ELSE
+		FOR t_month IN 7..p_hebrew.month_value LOOP
+			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
+		END LOOP;
+	END IF;
 
-	return int(jd) + 0.5
+	RETURN TRUNC(t_jd) + 0.5;
+END;
+
+$$ LANGUAGE plpgsql STRICT IMMUTABLE;
