@@ -6,7 +6,7 @@
 CREATE OR REPLACE FUNCTION calendars.hebrew_delay_new_year1(
 	p_year INTEGER
 )
-RETURNS DATE AS $$
+RETURNS INTEGER AS $$
 
 DECLARE
 	t_months NUMERIC := TRUNC(((235 * p_year) - 234) / 19);

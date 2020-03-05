@@ -5,7 +5,7 @@
 CREATE OR REPLACE FUNCTION calendars.hebrew_delay_new_year2(
 	p_year INTEGER
 )
-RETURNS DATE AS $$
+RETURNS INTEGER AS $$
 
 DECLARE
 	last_year INTEGER := calendars.hebrew_delay_new_year1(p_year - 1);
