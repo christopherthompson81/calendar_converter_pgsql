@@ -13,11 +13,11 @@ DECLARE
 	t_start_day INTEGER := (CASE WHEN t_leap THEN 21 ELSE 22 END);
 	t_start_jd NUMERIC := astronomia.gregorian_to_jd(make_date(g_year, 3, t_start_day));
 	t_caitra INTEGER := (CASE WHEN t_leap THEN 31 ELSE 30 END);
-	t_month INTEGER := MIN(p_date_parts.month_value - 2, 5);
+	t_month INTEGER := LEAST(p_date_parts.month_value - 2, 5);
 	t_jd NUMERIC := t_start_jd + t_caitra;
 
 BEGIN
-	IF p_month = 1 THEN 
+	IF t_month = 1 THEN 
 		t_jd := t_start_jd + (p_date_parts.day_value - 1);
 	ELSE
 		t_jd := t_start_jd + t_caitra;

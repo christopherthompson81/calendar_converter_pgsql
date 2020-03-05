@@ -18,9 +18,9 @@ DECLARE
 	-- Gregorian date for Julian day
 	t_calendar NUMERIC[] := astronomia.jd_to_calendar(t_jd);
 	-- Is this a leap year?
-	t_leap BOOLEAN := astronomia.leap_year_gregorian(t_calendar[1]);
+	t_leap BOOLEAN := astronomia.leap_year_gregorian(t_calendar[1]::INTEGER);
 	-- JD at start of Gregorian year
-	t_calendar0 NUMERIC[] := astronomia.calendar_to_jd(ARRAY[t_calendar[1], 1, 1, 0, 0, 0, 0]::NUMERIC[]);
+	t_calendar0 NUMERIC := astronomia.calendar_to_jd(ARRAY[t_calendar[1], 1, 1, 0, 0, 0, 0]::NUMERIC[]);
 	-- Day number (0 based) in Gregorian year
 	t_year_day NUMERIC := t_jd - t_calendar0;
 	-- Days in Caitra this year
