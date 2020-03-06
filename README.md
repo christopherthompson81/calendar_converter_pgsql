@@ -76,6 +76,7 @@ These queries would output two columns as follows:
 # Currently Supported Calendar Types
 
 * Chinese
+* Hebrew
 * Hijri
 * Jalali
 
