@@ -22,12 +22,12 @@ DECLARE
 
 BEGIN
 	LOOP
-		EXIT WHEN t_jd < calendars.hebrew_to_jd(i, 7, 1);
+		EXIT WHEN t_jd < calendars.hebrew_to_jd((i, 7, 1));
 		i := i + 1;
 		t_year := t_year + 1;
 	END LOOP;
 
-	IF t_jd < calendars.hebrew_to_jd(t_year, 1, 1) THEN
+	IF t_jd < calendars.hebrew_to_jd((t_year, 1, 1)) THEN
 		t_first := 7;
 	ELSE
 		t_first := 1;
@@ -36,12 +36,12 @@ BEGIN
 	i := t_first;
 	t_month := t_first;
 	LOOP
-		EXIT WHEN t_jd <= calendars.hebrew_to_jd(t_year, i, calendars.hebrew_month_days(t_year, i));
+		EXIT WHEN t_jd <= calendars.hebrew_to_jd((t_year, i, calendars.hebrew_month_days(t_year, i)));
 		i := i + 1;
 		t_month := t_month + 1;
 	END LOOP;
 
-	t_day := (t_jd - calendars.hebrew_to_jd(t_year, t_month, 1))::INTEGER + 1;
+	t_day := (t_jd - calendars.hebrew_to_jd((t_year, t_month, 1)))::INTEGER + 1;
 
 	t_date_parts.year_value := t_year;
 	t_date_parts.month_value := t_month;

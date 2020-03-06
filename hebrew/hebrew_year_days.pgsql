@@ -9,8 +9,8 @@ RETURNS INTEGER AS $$
 
 BEGIN
 	RETURN (
-		calendars.hebrew_to_jd(p_year + 1, 7, 1) -
-		calendars.hebrew_to_jd(p_year, 7, 1)
+		calendars.hebrew_to_jd((p_year + 1, 7, 1)) -
+		calendars.hebrew_to_jd((p_year, 7, 1))
 	);
 END;
 

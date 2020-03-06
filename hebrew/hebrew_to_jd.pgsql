@@ -23,14 +23,14 @@ DECLARE
 
 BEGIN
 	IF p_hebrew.month_value < 7 THEN
-		FOR t_month IN 7..(t_months + 1) LOOP
+		FOR t_month IN 7..(t_months) LOOP
 			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
 		END LOOP;
-		FOR t_month IN 1..p_hebrew.month_value LOOP
+		FOR t_month IN 1..(p_hebrew.month_value - 1) LOOP
 			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
 		END LOOP;
 	ELSE
-		FOR t_month IN 7..p_hebrew.month_value LOOP
+		FOR t_month IN 7..(p_hebrew.month_value - 1) LOOP
 			t_jd := t_jd + calendars.hebrew_month_days(p_hebrew.year_value, t_month);
 		END LOOP;
 	END IF;
