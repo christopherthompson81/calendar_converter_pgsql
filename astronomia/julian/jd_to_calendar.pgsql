@@ -50,8 +50,8 @@ DECLARE
 	t_modf NUMERIC[] := astronomia.modf(p_jd + 0.5);
 	t_z NUMERIC := t_modf[1];
 	t_f NUMERIC := t_modf[2];
-	α INTEGER := FLOOR((t_z * 100.0 - 186721625.0) / 3652425.0);
-	t_a INTEGER := (
+	α NUMERIC := FLOOR((t_z * 100.0 - 186721625.0) / 3652425.0);
+	t_a NUMERIC := (
 		CASE
 		WHEN t_is_julian THEN
 			t_z
@@ -59,10 +59,10 @@ DECLARE
 			t_z + 1 + α - FLOOR(α / 4.0)
 		END
 	);
-	t_b INTEGER := t_a + 1524;
-	t_c INTEGER := FLOOR((t_b * 100 - 12210) / 36525);
-	t_d INTEGER := FLOOR((36525 * t_c) / 100);
-	t_e INTEGER := FLOOR(((t_b - t_d) * 10000) / 306001);
+	t_b NUMERIC := t_a + 1524;
+	t_c NUMERIC := FLOOR((t_b * 100 - 12210) / 36525);
+	t_d NUMERIC := FLOOR((36525 * t_c) / 100);
+	t_e NUMERIC := FLOOR(((t_b - t_d) * 10000) / 306001);
 	-- compute return values
 	t_day NUMERIC := ((t_b - t_d) - FLOOR((306001.0 * t_e) / 10000.0))::NUMERIC;
 	t_month NUMERIC := (
