@@ -78,6 +78,7 @@ These queries would output two columns as follows:
 * Chinese
 * Hebrew
 * Hijri
+* Hindu (needs work)
 * Jalali
 
 # To Do
