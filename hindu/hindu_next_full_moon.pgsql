@@ -1,6 +1,9 @@
 -------------------------------------------------------------------------------
 -- Find the next full moon after a given JDE (stored in seconds)
--- 
+--
+-- INACCURATE: Hindu calendars use some sort of sunrise / sunset rule instead
+-- of using midnight local time. This can return a result that's a day late.
+--
 -- Returns the JDE of the instant of the closest full moon forward (at
 -- midnight UTC, shifted by beijing timezone)
 -------------------------------------------------------------------------------
