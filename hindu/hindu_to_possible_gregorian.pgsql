@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 -- Obtain Indian Civil Date from Calendar Array
 -------------------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION calendars.possible_gregorian_from_hindu(
+CREATE OR REPLACE FUNCTION calendars.hindu_to_possible_gregorian(
 	p_g_year INTEGER,
 	p_h_month INTEGER,
 	p_h_day INTEGER

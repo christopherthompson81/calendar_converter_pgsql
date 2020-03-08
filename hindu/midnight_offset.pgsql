@@ -25,18 +25,17 @@ AS $$
 
 DECLARE
 	t_time_shift_days NUMERIC := p_time_shift / 24;
-	t_midnight NUMERIC;
-	-- Time
-	t_hour NUMERIC;
-	t_minute NUMERIC;
-	t_second NUMERIC;
-	t_ms NUMERIC;
-	-- fractional day of year
-	t_day_fraction NUMERIC;
+	t_jde NUMERIC := p_jde + t_time_shift_days;
+	t_calendar NUMERIC[] := astronomia.jde_to_calendar(t_jde);
+	t_midnight NUMERIC := astronomia.gregorian_to_jde(make_date(
+		t_calendar[1]::INTEGER,
+		t_calendar[2]::INTEGER,
+		t_calendar[3]::INTEGER
+		)::TIMESTAMP
+	);
 
 BEGIN
-	t_midnight := astronomia.jd_to_jde(TRUNC(astronomia.jde_to_jd(p_jde + t_time_shift_days)) + t_time_shift_days);
-	RETURN t_midnight + 0.5 + (1.0 / 86400000.0);
+	RETURN t_midnight;
 END;
 
 $$ LANGUAGE plpgsql;
