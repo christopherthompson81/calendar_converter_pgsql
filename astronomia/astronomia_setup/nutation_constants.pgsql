@@ -1,41 +1,3 @@
--- Explanation of shorthand
---
--- The nutation algorithm uses the values in the table as coefficients to
--- generate the desired outputs, so they are not the outputs direclty and are
--- therefore not labeled as such.
---
--- D = Mean elongation of the moon from the sun
--- lunar_solar_mean_elongation
--- d,
---
--- M = Mean anomaly of the Sun (Earth)
--- solar_mean_anomaly_earth
--- m,
---
--- M′ = Mean anomaly of the Moon
--- lunar_mean_anomaly
--- n,
---
--- F = Moon's argument of latitude
--- lunar_latitude
--- f,
---
--- Ω = Longitude of the ascending node of the Moon's mean orbit on the ecliptic, measured from the mean equinox of the date
--- lunar_ascending_node_longitude
--- ω,
---
--- Δψ = Nutation in Longitude
--- Coefficient of the sine of the argument (2 part?)
--- sin0, sin1
--- s0, s1
---
--- Δε = Nutation in Obliquity
--- Coefficient of the cosine of the argument (2 part?)
--- cos0, cos1
--- c0, c1
---
--- Periodic terms for the nutation in longitude (Δψ) and in obliquity (Δε). The unit is 0° 0007.
--- Astronomical Algorithms, Chapter 22, Table 22.A
 DROP TABLE IF EXISTS astronomia.nutation_periods CASCADE;
 CREATE TABLE astronomia.nutation_periods (
 	nutation_period_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -49,6 +11,25 @@ CREATE TABLE astronomia.nutation_periods (
 	c0 INTEGER,
 	c1 NUMERIC
 );
+
+COMMENT ON TABLE astronomia.nutation_periods IS 'Periodic terms for the nutation in longitude (Δψ) and in obliquity (Δε). The unit is 0° 0007.
+Astronomical Algorithms, Chapter 22, Table 22.A
+
+Explanation of shorthand
+
+The nutation algorithm uses the values in the table as coefficients to
+generate the desired outputs, so they are not the outputs direclty and are
+therefore not labeled as such.';
+
+COMMENT ON COLUMN astronomia.nutation_periods.d IS 'Mean elongation of the moon from the sun - D => lunar_solar_mean_elongation';
+COMMENT ON COLUMN astronomia.nutation_periods.m IS 'Mean anomaly of the Sun (Earth) - M -> solar_mean_anomaly_earth';
+COMMENT ON COLUMN astronomia.nutation_periods.n IS 'Mean anomaly of the Moon - M′ => lunar_mean_anomaly';
+COMMENT ON COLUMN astronomia.nutation_periods.f IS 'Moon''s argument of latitude - F => lunar_latitude';
+COMMENT ON COLUMN astronomia.nutation_periods.ω IS 'Longitude of the ascending node of the Moon''s mean orbit on the ecliptic, measured from the mean equinox of the date - Ω / ω => lunar_ascending_node_longitude';
+COMMENT ON COLUMN astronomia.nutation_periods.s0 IS 'Coefficient of the sine of the argument Nutation in Longitude - Δψ - Part 1 => sin0';
+COMMENT ON COLUMN astronomia.nutation_periods.s1 IS 'Coefficient of the sine of the argument Nutation in Longitude - Δψ - Part 2 => sin1';
+COMMENT ON COLUMN astronomia.nutation_periods.s0 IS 'Coefficient of the cosine of the argument Nutation in Obliquity - Δε - Part 1 => cos0';
+COMMENT ON COLUMN astronomia.nutation_periods.s1 IS 'Coefficient of the cosine of the argument Nutation in Obliquity - Δε - Part 2 => cos1';
 
 INSERT INTO astronomia.nutation_periods (d, m, n, f, ω, s0, s1, c0, c1)
 VALUES(0, 0, 0, 0, 1, -171996, -174.2, 92025, 8.9);
