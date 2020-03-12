@@ -11,7 +11,7 @@
 -- @return {number} mean obliquity (ε₀)
 -------------------------------------------------------------------------------
 --
-CREATE OR REPLACE FUNCTION astronomia.mean_obliquity(
+CREATE OR REPLACE FUNCTION astronomia.nutation_mean_obliquity(
 	p_jde NUMERIC
 )
 RETURNS NUMERIC
